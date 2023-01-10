@@ -1,12 +1,16 @@
+
 #사원테이블 생성
 
 CREATE TABLE `worker`(
-`NO` INT(11) NOT NULL AUTO_INCREMENT COMMENT  '순번',
-`NAME` VARCHAR(50) NULL DEFAULT NULL COMMENT '이름',
-`NUM` VARCHAR(50) NULL DEFAULT NULL COMMENT '사원번호',
-`RANK` VARCHAR(50) NULL DEFAULT NULL COMMENT '직급',
-`DEPT` VARCHAR(50) NULL DEFAULT NULL COMMENT '부서',
-PRIMARY KEY (`NO`)
+`NO` INT(10) NOT NULL AUTO_INCREMENT COMMENT '순번',
+`NAME` VARCHAR(50) NOT NULL COMMENT '이름',
+`NUM` VARCHAR(50) NOT NULL UNIQUE COMMENT '사원번호',
+`ADD` VARCHAR(50) NOT NULL COMMENT '주소',
+`PHONE` VARCHAR(50) NOT NULL COMMENT '전화번호',
+`RANK` VARCHAR(50) NOT NULL COMMENT '직급',
+`DEPT` VARCHAR(50) NOT NULL COMMENT '부서',
+`E-MAIL` VARCHAR(50) NULL DEFAULT NULL COMMENT '이메일',
+PRIMARY KEY (`NO`,`NUM`)
 )
 COLLATE='utf8_general_ci'
 ;
@@ -16,21 +20,35 @@ COLLATE='utf8_general_ci'
 INSERT INTO `worker` SET
 `NAME`= '홍길동',
 `NUM`='2023010901',
+`ADD`='대전 유성구 관평동 123번지',
+`PHONE`='010-1234-5678', 
 `RANK` = '사원',
-`DEPT`='마케팅'
+`DEPT`='마케팅',
+`E-MAIL` = 'hsn@gmail.com'
 ;
 INSERT INTO `worker` SET
-`NAME`= '둘리',
+`NAME`= '아무개',
 `NUM`='2023010902',
+`ADD`='대전 유성구 문지로 292-16',
+`PHONE`='010-2222-4444',
 `RANK` = '대리',
-`DEPT`='개발팀'
+`DEPT`='개발팀',
+`E-MAIL` = 'ljg@gmail.com'
 ;
 
 INSERT INTO `worker` SET
-`NAME`= '희동이',
+`NAME`= '김길동',
 `NUM`='2023010903',
+`ADD`='대전 유성구 노은동 20',
+`PHONE`='010-3456-9876',
 `RANK` = '과장',
-`DEPT`='영업'
+`DEPT`='영업',
+`E-MAIL` = 'cde@gmail.com'
 ;
+
 
 SELECT*FROM `worker`
+
+DESC `worker`
+
+
