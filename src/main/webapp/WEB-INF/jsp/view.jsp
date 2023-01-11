@@ -48,9 +48,9 @@
         <h1>삼인에이치엔티 직원 검색</h1>
       </div>
       <div id="jb-content">
-      <form action="../EgovController/member/detail">
+      <form action="../Egov/testDetail.do">
       <input type="hidden"  value="name">
-        <p>	이름 : <input type = "text" name = "name" /> <button type="submit">검색</button></p>
+        <p>	사번 : <input type = "text" name = "testId" /> <button type="submit">검색</button></p>
       </form>
       </div>
       <div id="jb-footer">

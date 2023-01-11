@@ -4,11 +4,13 @@ public class EgoVo {
 	
 	private int no;
 	private String name;
+	private String num;
 	private String add;
 	private String phone;
 	private String rank;
 	private String dept;
 	private String email;
+	
 	public int getNo() {
 		return no;
 	}
@@ -20,6 +22,12 @@ public class EgoVo {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public String getNum() {
+		return num;
+	}
+	public void setNum(String num) {
+		this.num = num;
 	}
 	public String getAdd() {
 		return add;
@@ -51,8 +59,6 @@ public class EgoVo {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
-	
 	
 	
 	

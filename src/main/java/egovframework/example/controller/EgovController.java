@@ -43,7 +43,7 @@ public class EgovController {
 	
 		model.addAttribute("list", egovService.selectTest(egoVo));
 		
-		return "testList";
+		return "view";
 		
 		
 	}
