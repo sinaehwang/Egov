@@ -48,7 +48,10 @@
         <h1>삼인에이치엔티 직원 검색</h1>
       </div>
       <div id="jb-content">
+      <form action="../EgovController/member/detail">
+      <input type="hidden"  value="name">
         <p>	이름 : <input type = "text" name = "name" /> <button type="submit">검색</button></p>
+      </form>
       </div>
       <div id="jb-footer">
         <p>주식회사 삼인에이치엔티대표자 (성명) : 김승한대전광역시 유성구 테크노9로 35(탑립동) IT 전용벤처타운 407호, 409호 이메일 : sales@saminhnt.com 대표번호 : 042-719-7780 팩스 번호 : 042-719-7790사업자 등록 번호 : [ 646 - 87 - 00199 ] Copyright © by SAMINHNT All Right Reserved.</p>

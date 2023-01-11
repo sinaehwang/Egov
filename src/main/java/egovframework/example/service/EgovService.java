@@ -1,21 +1,24 @@
 package egovframework.example.service;
 
 import java.util.List;
-import java.util.Map;
 
-import javax.annotation.Resource;
+import egovframework.example.vo.EgoVo;
 
-import org.springframework.stereotype.Service;
+public interface EgovService {
 
-import egovframework.example.dao.EgovDAO;
+	public List<EgoVo> selectTest(EgoVo egoVo) throws Exception;
 
-@Service
-public class EgovService {
-	@Resource
-	private EgovDAO egovDAO;
+	public EgoVo selectDetail(int testId) throws Exception;
+
+	/*
+	 * @Resource private EgovDAO egovDAO;
+	 * 
+	 * public List<Map> getSemester(){
+	 * 
+	 * return egovDAO.getSemester(); }
+	 */
 	
-	public List<Map> getSemester(){
-		
-		return egovDAO.getSemester();
-	}
+ 
+
+	
 }
