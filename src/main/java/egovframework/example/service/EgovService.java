@@ -8,7 +8,7 @@ public interface EgovService {
 
 	public List<EgoVo> selectTest(EgoVo egoVo) throws Exception;
 
-	public EgoVo selectDetail(int testId) throws Exception;
+	public EgoVo selectDetail(String name) throws Exception;
 
 	/*
 	 * @Resource private EgovDAO egovDAO;

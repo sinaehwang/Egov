@@ -8,6 +8,6 @@ public interface EgovDAO {
 
 	List<EgoVo> selectTest(EgoVo egoVo) throws Exception;
 
-	EgoVo selectDetail(int testId) throws Exception;
+	EgoVo selectDetail(String name) throws Exception;
 
 }

@@ -22,9 +22,9 @@ public class EgoServiceImpl implements EgovService{
 	}
 	
 	@Override
-	public EgoVo selectDetail(int testId) throws Exception {
+	public EgoVo selectDetail(String name) throws Exception {
 		
-		return egoDao.selectDetail(testId);
+		return egoDao.selectDetail(name);
 	}
 
 }

@@ -15,6 +15,10 @@ PRIMARY KEY (`NO`,`NUM`)
 COLLATE='utf8_general_ci'
 ;
 
+#이메일 컬럼명 변경
+ALTER TABLE `worker`
+RENAME COLUMN `E-MAIL` TO EMAIL;
+
 
 #임시데이터 삽입
 INSERT INTO `worker` SET
@@ -48,7 +52,5 @@ INSERT INTO `worker` SET
 
 
 SELECT*FROM `worker`
-
 DESC `worker`
-
 

@@ -1,21 +1,15 @@
 package egovframework.example.controller;
 
-import java.util.List;
-import java.util.Map;
-
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import egovframework.example.service.EgovService;
+import egovframework.example.util.Ut;
 import egovframework.example.vo.EgoVo;
 
 @Controller
@@ -25,21 +19,10 @@ public class EgovController {
 	@Autowired
 	private EgovService egovService;
 
-	/*
-	 * @RequestMapping("/view.do") public ModelAndView dbPage(ModelAndView mav)
-	 * throws Exception{
-	 * 
-	 * List<Map> semesterModel = egovService.getSemester();
-	 * 
-	 * mav.addObject("semester", semesterModel); mav.setViewName("view");
-	 * 
-	 * return mav; }
-	 */
 	
 	
 	@RequestMapping(value="/testList.do")
 	public String testListdo(EgoVo egoVo,Model model) throws Exception {
-		
 	
 		model.addAttribute("list", egovService.selectTest(egoVo));
 		
@@ -49,11 +32,41 @@ public class EgovController {
 	}
 	
 	@RequestMapping(value = "testDetail.do")
-	public String viewForm(Model model, HttpServletRequest request) throws Exception{
+	public String viewForm(Model model, HttpServletRequest request, HttpServletResponse response) throws Exception{
 		
-		int testId = Integer.parseInt(request.getParameter("testId"));
+		String name = request.getParameter("testName");
 		
-		EgoVo egoVo = egovService.selectDetail(testId);
+		//이름이 공백인 경우를 막기위한 임시 데이터
+		if(name.isEmpty()) {
+			request.setAttribute("msg", "이름을 입력해주세요");
+			request.setAttribute("url", "/Egov/testList.do");
+			
+			return "alert";
+		}
+		
+		//숫자로 시작하는 경우 막기위한 임시데이터
+		if(Ut.isStandardLoginIdString(name)) {
+			request.setAttribute("msg", "숫자로 시작할 수 없습니다.");
+			request.setAttribute("url", "/Egov/testList.do");
+			
+			return "alert";
+			
+			//return Ut.msgAndBack(request, "숫자로 시작할 수 없습니다.");
+		}
+		
+		
+		EgoVo egoVo = egovService.selectDetail(name);
+		
+		
+		if(egoVo==null) {
+			
+			request.setAttribute("msg", "일치하는 회원정보가 없습니다.");
+			request.setAttribute("url", "/Egov/testList.do");
+			
+			//return Ut.msgAndBack(request, "일치하는 회원정보가 없습니다.");
+			
+			return "alert";
+		}
 		
 		model.addAttribute("vo", egoVo);
 		

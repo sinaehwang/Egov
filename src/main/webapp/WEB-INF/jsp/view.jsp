@@ -50,7 +50,7 @@
       <div id="jb-content">
       <form action="../Egov/testDetail.do">
       <input type="hidden"  value="name">
-        <p>	사번 : <input type = "text" name = "testId" /> <button type="submit">검색</button></p>
+        <p>	이름 : <input type = "text" name = "testName" /> <button type="submit">검색</button></p>
       </form>
       </div>
       <div id="jb-footer">

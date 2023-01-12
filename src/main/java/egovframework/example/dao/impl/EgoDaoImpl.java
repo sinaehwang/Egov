@@ -25,11 +25,11 @@ public class EgoDaoImpl implements EgovDAO {
 	}
 	
 	@Override
-	public EgoVo selectDetail(int testId) throws Exception{
+	public EgoVo selectDetail(String name) throws Exception{
 		
 		TestMapper mapper = sqlSession.getMapper(TestMapper.class);
 		
-		return mapper.selectDetail(testId);
+		return mapper.selectDetail(name);
 	}
 	
 	

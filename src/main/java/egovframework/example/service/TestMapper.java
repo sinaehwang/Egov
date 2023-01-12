@@ -8,7 +8,7 @@ public interface TestMapper {
 	
 	List<EgoVo > selectTest(EgoVo egoVo) throws Exception;
 
-	EgoVo selectDetail(int testId);
+	EgoVo selectDetail(String testName);
 	
 
 }
