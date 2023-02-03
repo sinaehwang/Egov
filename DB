@@ -1,56 +1,54 @@
 
-#사원테이블 생성
-
-CREATE TABLE `worker`(
-`NO` INT(10) NOT NULL AUTO_INCREMENT COMMENT '순번',
-`NAME` VARCHAR(50) NOT NULL COMMENT '이름',
-`NUM` VARCHAR(50) NOT NULL UNIQUE COMMENT '사원번호',
-`ADD` VARCHAR(50) NOT NULL COMMENT '주소',
-`PHONE` VARCHAR(50) NOT NULL COMMENT '전화번호',
-`RANK` VARCHAR(50) NOT NULL COMMENT '직급',
-`DEPT` VARCHAR(50) NOT NULL COMMENT '부서',
-`E-MAIL` VARCHAR(50) NULL DEFAULT NULL COMMENT '이메일',
-PRIMARY KEY (`NO`,`NUM`)
+CREATE TABLE board (
+	board_id INT auto_increment NOT NULL COMMENT '번호',
+	title varchar(50) NOT NULL COMMENT '제목',
+	content varchar(1000) NOT NULL COMMENT '내용',
+	writer varchar(50) NOT NULL COMMENT '등록자',
+	password varchar(200) NULL COMMENT '비밀번호',
+	views INT NOT NULL COMMENT '조회수',
+	regdate DATETIME NOT NULL COMMENT '등록일',
+	updatedate DATETIME NULL COMMENT '수정일',
+	deletedate DATETIME NULL COMMENT '삭제일',
+	CONSTRAINT board_pk PRIMARY KEY (board_id)
 )
-COLLATE='utf8_general_ci'
-;
+ENGINE=InnoDB
+DEFAULT CHARSET=utf8
+COLLATE=utf8_general_ci
+COMMENT='삼인의 숲 게시판 테이블';
 
-#이메일 컬럼명 변경
-ALTER TABLE `worker`
-RENAME COLUMN `E-MAIL` TO EMAIL;
-
-
-#임시데이터 삽입
-INSERT INTO `worker` SET
-`NAME`= '홍길동',
-`NUM`='2023010901',
-`ADD`='대전 유성구 관평동 123번지',
-`PHONE`='010-1234-5678', 
-`RANK` = '사원',
-`DEPT`='마케팅',
-`E-MAIL` = 'hsn@gmail.com'
-;
-INSERT INTO `worker` SET
-`NAME`= '아무개',
-`NUM`='2023010902',
-`ADD`='대전 유성구 문지로 292-16',
-`PHONE`='010-2222-4444',
-`RANK` = '대리',
-`DEPT`='개발팀',
-`E-MAIL` = 'ljg@gmail.com'
-;
-
-INSERT INTO `worker` SET
-`NAME`= '김길동',
-`NUM`='2023010903',
-`ADD`='대전 유성구 노은동 20',
-`PHONE`='010-3456-9876',
-`RANK` = '과장',
-`DEPT`='영업',
-`E-MAIL` = 'cde@gmail.com'
-;
+INSERT INTO board SET
+title='제목',
+content='내용',
+writer= (select concat('익명', (select ifnull(max(board_id), 0)+1 from board ALIAS_FOR_SUBQUERY))),
+`password` ='1234',
+views = 0,
+regdate=NOW(),
+updatedate=NOW(),
+deletedate=NOW()
 
 
-SELECT*FROM `worker`
-DESC `worker`
+INSERT INTO board
+(
+   title,
+   content,
+   writer,
+   password,
+   views,
+   regdate,
+   updatedate,
+   deletedate
+)VALUES (
+   '제목',
+   '내용',
+   (select concat('익명', (select ifnull(max(board_id), 0)+1 from board ALIAS_FOR_SUBQUERY))),
+   '1234',
+   '10',
+   NOW(),
+   NOW(),
+   NOW()
+)
+	
+DROP TABLE board
+SELECT*FROM board
+
 

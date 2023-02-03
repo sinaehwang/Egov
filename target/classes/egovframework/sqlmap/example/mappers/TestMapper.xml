@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="egovframework.example.service.TestMapper">
 
+<!-- 
 	<select id = "selectTest" resultType="egovframework.example.vo.EgoVo">
 		SELECT *
 		FROM `worker`
@@ -12,4 +13,56 @@
 		FROM `worker`
 		WHERE `NAME`=#{name}
 	</select>
+ -->	
+ 
+ 	<insert id="doAdd" parameterType = "egovframework.example.vo.EgoVo" >
+ 	INSERT INTO board SET
+	title=#{title},
+	content=#{content},
+	writer=(select concat('익명', (select ifnull(max(board_id), 0)+1 from board ALIAS_FOR_SUBQUERY))),
+	`password` =#{password},
+	views = 0,
+	regdate=NOW(),
+	updatedate=NOW(),
+	deletedate=NOW()
+	</insert>
+	 
+	 <select id="getArticle" parameterType ="Integer" resultType="egovframework.example.vo.EgoVo" >
+	 
+	 SELECT * FROM board
+	 WHERE board_id = #{id}
+	 
+	 </select>
+	 
+	 <select id="list" resultType="egovframework.example.vo.EgoVo">
+	 
+	 SELECT *FROM board
+	 ORDER BY board_id DESC
+	 </select>
+	 
+	 <delete id="delete" parameterType="Integer">
+	 
+	 DELETE FROM board
+	 WHERE board_id=#{id}
+	 
+	 </delete>
+	 
+	 <update id="doModify">
+	 UPDATE board
+	 <set>
+	 	<if test="title != null and title !='' ">title = #{title},</if>
+	 	<if test="content != null and content !='' ">content = #{content},</if>
+	 	updatedate=NOW()
+	 </set>
+	 WHERE board_id=#{board_id}
+	 
+	 </update>
+	 	
+	 <select id="getLastId" resultType="Integer">
+	 SELECT board_id FROM board ORDER BY board_id DESC LIMIT 0,1;
+	 </select>
+	 
+	 
+	 
+	 
 </mapper>

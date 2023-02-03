@@ -26,6 +26,7 @@
         </property>
     </bean>
     
+    
     <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver" />
     <!-- 쿠키를 이용한 Locale 이용시 <bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver"/> -->
     <bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
@@ -59,6 +60,7 @@
         </property>
     </bean>
 	<!-- /For Pagination Tag -->
+	
 
     <mvc:view-controller path="/cmmn/validator.do" view-name="cmmn/validator"/>
 </beans>
